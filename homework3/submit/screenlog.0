@@ -1,0 +1,102 @@
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ ls
+[?2004l[0m[01;32mbuild_in_container_calculatePI.sh[0m  calculatepi.sbatch-gabrielcf.sh
+[01;32mcalculatePI_build.sh[0m               [01;32mcalculatePI_setup.sh[0m
+calculatePI.err                    [01;32mrun_in_container_calculatePI.sh[0m
+calculatePI.out                    screenlog.0
+calculatePI.sbatch                 slurm-3786017.out
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ cat ./run_in_container_calculatePI.sh
+[?2004l#!/bin/sh
+# This script runs the calculatePI.sh script using the container `mnxb11_al9.latest.sif` with minimum required parameters
+# -B mounts the project directory inside the container so that is visible also inside the container
+apptainer run -B /projects:/projects /projects/hep/fs11/share/mnxb11/containers/mnxb11_al9.latest.sif ./calculatePI_setup.sh
+
+
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ cat ./run_in_container_calculatePI.sh[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kcat ./calculatepi.sbatch-YOURNAME.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.shg.sha.shb.shr.shi.she.shl.shc.shf.sh
+[?2004l#!/bin/sh
+
+#SBATCH -J "MNXB11 Pi homework"
+#SBATCH --time=00:10:00
+#SBATCH -A hep2023-1-6
+#SBATCH --mem 30G
+#SBATCH --output=calculatePI.out
+#SBATCH --error=calculatePI.err
+
+# Launch the calculatePI.sh application script using the container script
+run_in_container_calculatePI.sh
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ sbatch calculatepi.sbatch-YOURNAME.sh[1PE.sh[C[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.shg.sha.shb.shr.shi.she.shl.shc.shf.sh
+[?2004lSubmitted batch job 3786117
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ squeue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3786117       hep MNXB11 P ga5705co  R       0:13      1 cx12
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ scontrol show job JOBID
+[?2004lscontrol_print_job error: Invalid job id specified
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ scontrol show job JOBID[K[K[K[K[K3786117
+[?2004lJobId=3786117 JobName=MNXB11 Pi homework
+   UserId=ga5705co(400210) GroupId=ga5705co(400210) MCS_label=N/A
+   Priority=64525 Nice=0 Account=hep2023-1-6 QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:01:45 TimeLimit=00:10:00 TimeMin=N/A
+   SubmitTime=2026-10-04T23:52:24 EligibleTime=2026-10-04T23:52:24
+   AccrueTime=2026-10-04T23:52:24
+   StartTime=2026-10-04T23:52:25 EndTime=2026-10-05T00:02:25 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-04T23:52:25 Scheduler=Main
+   Partition=hep AllocNode:Sid=cosmos-pkf:2461179
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=cx12
+   BatchHost=cx12
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=1,mem=30G,node=1,billing=1
+   AllocTRES=cpu=1,mem=30G,node=1,billing=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryNode=30G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/home/ga5705co/git/MNXB11-homework/homework3/calculatePI/scripts/calculatepi.sbatch-gabrielcf.sh
+   WorkDir=/home/ga5705co/git/MNXB11-homework/homework3/calculatePI/scripts
+   StdErr=/home/ga5705co/git/MNXB11-homework/homework3/calculatePI/scripts/calculatePI.err
+   StdIn=/dev/null
+   StdOut=/home/ga5705co/git/MNXB11-homework/homework3/calculatePI/scripts/calculatePI.out
+   Power=
+   
+
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ scontrol show job 3786117[2PJOBID[8Pqueue -u $USERbatch calculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1Pcat ./calculatepi.sbatch-gabrielcf.shrun_in_container_calculatePI.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcat ./run_in_container_calculatePI.shcalculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csbatch calculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[23Pqueue -u $USERcontrol show job JOBID3786117[Kscontrol show job 3786117[2PJOBID[8Pqueue -u $USERbatch calculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1Pcat ./calculatepi.sbatch-gabrielcf.shrun_in_container_calculatePI.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcat ./run_in_container_calculatePI.shcalculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csbatch calculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[23Pqueue -u $USERcontrol show job JOBID3786117[Kl^C[?2004l[?2004hscontrol show job 3786117[2PJOBID[8Pqueue -u $USERbatch calculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1Pcat ./calculatepi.sbatch-gabrielcf.shrun_in_container_calculatePI.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[Kcat ./run_in_container_calculatePI.shcalculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csbatch calculatepi.sbatch-gabrielcf.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[23Pqueue -u $USERcontrol show job JOBID3786117l[Kc^C[?2004l[?2004h[?2004l
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ [K[ga5705co@cosmos-pkf scripts]$ [K[ga5705co@cosmos-pkf scripts]$ [K[ga5705co@cosmos-pkf scripts]$ [K[ga5705co@cosmos-pkf scripts]$ [K[ga5705co@cosmos-pkf scripts]$ [K[ga5705co@cosmos-pkf scripts]$ sacct -j JOBIDcontrol show job 3786117[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Ksacctt[K -j 3786117
+[?2004lJobID           JobName  Partition    Account  AllocCPUS      State ExitCode 
+------------ ---------- ---------- ---------- ---------- ---------- -------- 
+3786117      MNXB11 Pi+        hep hep2023-1+          1    RUNNING      0:0 
+3786117.bat+      batch            hep2023-1+          1    RUNNING      0:0 
+3786117.ext+     extern            hep2023-1+          1    RUNNING      0:0 
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ sbatch --job-name=WASTED calculatepi.sbatch-YOURNAME.sh [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P.sh
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.shg.sha.shb.shr.shi.she.shl.shc.sh [A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cf.sh[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+
+[?2004lSubmitted batch job 3786118
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ sbatch --job-name=WASTED calculatepi.sbatch-gabrielcf.sh
+[?2004lSubmitted batch job 3786119
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ sbatch --job-name=WASTED calculatepi.sbatch-gabrielcf.sh
+[?2004lSubmitted batch job 3786120
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ squeue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3786120       hep   WASTED ga5705co  R       0:15      1 cx12
+           3786119       hep   WASTED ga5705co  R       0:16      1 cx12
+           3786118       hep   WASTED ga5705co  R       0:19      1 cx12
+           3786117       hep MNXB11 P ga5705co  R       4:50      1 cx12
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ scancel 3786120
+[?2004lkga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ scancel 3786120queue -u $USERbatch --job-name=WASTED calculatepi.sbatch-gabrielcf.sh[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cqueue -u $USER[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ccancel 3786120[Kscancel 3786120queue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3786119       hep   WASTED ga5705co  R       1:16      1 cx12
+           3786118       hep   WASTED ga5705co  R       1:19      1 cx12
+           3786117       hep MNXB11 P ga5705co  R       5:50      1 cx12
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ squeue -u $USERcancel 3786120queue -u $USERcancel 3786120[K[K19
+[?2004lkga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ scancel 3786119queue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3786119       hep   WASTED ga5705co CG       1:23      1 cx12
+           3786118       hep   WASTED ga5705co  R       1:28      1 cx12
+           3786117       hep MNXB11 P ga5705co  R       5:59      1 cx12
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ squeue -u $USERcancel 3786119queue -u $USER[Ksqueue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3786118       hep   WASTED ga5705co  R       1:47      1 cx12
+           3786117       hep MNXB11 P ga5705co  R       6:18      1 cx12
+kga5705co@cosmos-pkf:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ga5705co@cosmos-pkf scripts]$ exit
+[?2004lexit
