@@ -25,8 +25,8 @@ I generated the 10000 measurements and stored them into `tree_file.root`. The ra
 Followed instructions and created the desired histogram, seen in `velocity_components.png`. The second `TTree::Draw()` plot which was also asked to be saved is displayed in `selected_velocities.png`. 
 
 ### Final Check
-`.L MovingObject.cxx+`
-`.x write.C`
-----
-`.L MovingObject.cxx`
-`.x read.C`
+```.L MovingObject.cxx+`
+.x write.C```
+Read:
+```.L MovingObject.cxx
+.x read.C```
